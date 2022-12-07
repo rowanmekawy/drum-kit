@@ -4,12 +4,14 @@ for (var i =0; i< buttons.length; i++)
 {
     buttons[i].addEventListener("click", function() {
         sound(this.innerHTML);
+        make_flash(this.innerHTML);
         
     });
 }
 
 document.addEventListener("keydown", function(pressed){
     sound(pressed.key);
+    make_flash(pressed.key);
 });
 
 function sound(key){
@@ -46,4 +48,13 @@ function sound(key){
         default:
             break;
     }
+}
+
+function make_flash(key)
+{
+    var active_key = document.querySelector("."+key);
+    active_key.classList.add("pressed");
+    setTimeout(function(){
+        active_key.classList.remove("pressed");
+    }, 100);
 }
